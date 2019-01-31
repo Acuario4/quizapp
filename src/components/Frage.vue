@@ -1,45 +1,31 @@
 <template>
     <div>
-        <p class="einzelneFrage">Frage Nr. {{ frage.id }}: {{ frage.Frage }}</p>
-        <antwort v-for="(antwort, index) in frage.antworten" :key="index" :index="index" :antwort="antwort" :clicked="clicked[index]" :richtig="richtig[index]"></antwort>
+        <p class="einzelneFrage" v-if="frageKennung == frage.id">Frage {{ aktuelleFrage }}: {{ frage.Frage }}</p>
     </div>
 </template>
 
 <script>
-import Antwort from './Antwort'
 import { eventBus } from "../main.js";
-
 export default {
-    components: {
-        Antwort
-    },
-    props: ['frage'],
-    data() {
+    props: ['frage','ausgewaehltesQuiz'],
+    data: function() {
         return {
-            ausgewaehlt: -1
+            aktuelleFrage: 0,
+            gameStarted: false
         }
     },
     computed: {
-        richtig() {
-            return [
-                this.ausgewaehlt == 0,
-                this.ausgewaehlt == 1,
-                this.ausgewaehlt == 2,
-                this.ausgewaehlt == 3
-            ]
-        },
-        clicked() {
-            return [
-                this.ausgewaehlt == 0,
-                this.ausgewaehlt == 1,
-                this.ausgewaehlt == 2,
-                this.ausgewaehlt == 3
-            ]
+        frageKennung() {
+            return "" + this.ausgewaehltesQuiz + this.aktuelleFrage;
         }
     },
     created() {
-        eventBus.$on('antwortGewaehlt', (index) => {
-            this.ausgewaehlt = index;
+        eventBus.$on('neueFrage', (aktuelleFrage) => {
+            this.aktuelleFrage = aktuelleFrage
+        }),
+        eventBus.$on('gameStopped', () => {
+            this.gameStarted = false
+            this.aktuelleFrage = 0
         })
     }
 }

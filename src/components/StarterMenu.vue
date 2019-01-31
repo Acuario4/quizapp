@@ -2,8 +2,8 @@
     <div class="startMenu" v-if="!gameRunning">
         <p>Quiz zum Thema: </p>
         <select required name="Quiz Thema auswählen" id="mySelect" @change="setQuiz()">
-            <option value="0">Informatik</option>
-            <option value="1">Mathematik</option>
+            <option value="1">Informatik</option>
+            <option value="2">Mathematik</option>
         </select>
         <br>
         <button class="startButton" @click="startGame()">Thema auswählen</button>
@@ -16,7 +16,7 @@ export default {
     data: function() {
         return {
             gameRunning: false,
-            ausgewaehltesQuiz: 0,
+            ausgewaehltesQuiz: 1,
         }
     },
     methods: {
@@ -26,6 +26,8 @@ export default {
         },
         setQuiz() {
             this.ausgewaehltesQuiz = document.getElementById("mySelect").value;
+            console.log('Neue Selection: '+this.ausgewaehltesQuiz)
+            console.log('Neue Selection: '+(this.ausgewaehltesQuiz+3))
         }
     },
     created() {
