@@ -30,16 +30,16 @@ export default {
                 {id: 18, Richtig: 2, Frage: "Dualsystem: 10011 -Dezimalsystem: ..."},
                 {id: 19, Richtig: 4, Frage: "Das Hexadezimalsystem ist ein Stellenwertsystem zur Basis ..."},
                 {id: 110, Richtig: 3, Frage: "Rechne folgende Hexadezimalzahl in eine Dezimalzahl um: 1BF6ₕₑₓ"},
-                {id: 21, Richtig: 0, Frage: "Was ist die Summe der Zahlen von 1 bis 10?"},
-                {id: 22, Richtig: 0, Frage: "Sie stapeln fünf Würfel übereinander zu einem Turm. Die Augenzahl auf der Oberseite des obersten Würfels ist sechs. Wie lautet die Summe aller Augenzahlen?"},
-                {id: 23, Richtig: 0, Frage: "Es ist Punkt 14 Uhr. In welchem Winkel stehen großer und kleiner Zeiger in diesem Moment zueinander?"},
-                {id: 24, Richtig: 0, Frage: "300 g Erdbeeren kosten 1,95 €. Wie viel kosten 500 g?"},
-                {id: 25, Richtig: 0, Frage: "Das Ergebnis, wenn man alle Zahlen von 1 bis 100 addiert, lautet..."},
-                {id: 26, Richtig: 0, Frage: "767.376 ist das Quadrat einer natürlichen Zahl. Eine der folgenden drei Zahlen ist die richtige Lösung - welche?"},
-                {id: 27, Richtig: 0, Frage: "An einem Holzwürfel wird jede seiner acht Ecken abgesägt. Die Schnitte beginnen genau in der Mitte der Würfelkanten. Wie viele Ecken hat der so entstandene Körper?"},
-                {id: 28, Richtig: 0, Frage: "Wie lautet das Ergebnis einer beliebigen Zahl X nach folgenden Rechenschritten: ((X+11)*2-20)*5-10X"},
-                {id: 29, Richtig: 0, Frage: "Was ist die Summe der Quersummen der Zahlen von 1 bis 30?"},
-                {id: 210, Richtig: 0, Frage: "Punkt 15 Uhr stehen großer und kleiner Uhrzeiger genau im rechten Winkel zueinander. Zu welcher Zeit zwischen 15 und 16 Uhr ist das nochmals der Fall?"}
+                {id: 21, Richtig: 3, Frage: "Was ist die Summe der Zahlen von 1 bis 10?"},
+                {id: 22, Richtig: 4, Frage: "Sie stapeln fünf Würfel übereinander zu einem Turm. Die Augenzahl auf der Oberseite des obersten Würfels ist sechs. Wie lautet die Summe aller Augenzahlen?"},
+                {id: 23, Richtig: 3, Frage: "Es ist Punkt 14 Uhr. In welchem Winkel stehen großer und kleiner Zeiger in diesem Moment zueinander?"},
+                {id: 24, Richtig: 1, Frage: "300 g Erdbeeren kosten 1,95 €. Wie viel kosten 500 g?"},
+                {id: 25, Richtig: 1, Frage: "Das Ergebnis, wenn man alle Zahlen von 1 bis 100 addiert, lautet..."},
+                {id: 26, Richtig: 4, Frage: "767.376 ist das Quadrat einer natürlichen Zahl. Eine der folgenden drei Zahlen ist die richtige Lösung - welche?"},
+                {id: 27, Richtig: 2, Frage: "An einem Holzwürfel wird jede seiner acht Ecken abgesägt. Die Schnitte beginnen genau in der Mitte der Würfelkanten. Wie viele Ecken hat der so entstandene Körper?"},
+                {id: 28, Richtig: 2, Frage: "Wie lautet das Ergebnis einer beliebigen Zahl X nach folgenden Rechenschritten: ((X+11)*2-20)*5-10X"},
+                {id: 29, Richtig: 3, Frage: "Was ist die Summe der Quersummen der Zahlen von 1 bis 30?"},
+                {id: 210, Richtig: 2, Frage: "Punkt 15 Uhr stehen großer und kleiner Uhrzeiger genau im rechten Winkel zueinander. Zu welcher Zeit zwischen 15 und 16 Uhr ist das nochmals der Fall?"}
                 
 
             ],
@@ -66,7 +66,6 @@ export default {
             if (this.aktuelleFrage == 10) {
                 this.checkButton = 'Ergebnis anschauen'
             } else if (this.aktuelleFrage == 11) {
-                console.log('Ergebnisse werden aufgerufen')
                 eventBus.$emit('ergebnisseAnschauen', this.richtigeAntworten)                
             } else {
                 this.checkButton = 'Nächste Frage'
@@ -75,14 +74,10 @@ export default {
         },
         antwortUeberpruefen() {
             this.antwortUeberprueft = true;
-            console.log(this.Fragen[(this.ausgewaehltesQuiz-1)*10+this.aktuelleFrage-1].Richtig)
             if (this.aktuelleFrage!= 0) {
             if (this.Fragen[(this.ausgewaehltesQuiz-1)*10+this.aktuelleFrage-1].Richtig == this.gewaehlteAntwort) {
-                alert("Frage "+this.aktuelleFrage+": Richtig");
                 this.richtigeAntworten++
-            } else {
-                alert("Frage "+this.aktuelleFrage+": Falsch")
-            } }
+            }  }
             eventBus.$emit('antwortUeberprueft', this.Fragen[((this.ausgewaehltesQuiz-1)*10)+this.aktuelleFrage-1].Richtig)
         },
     },
@@ -102,6 +97,11 @@ export default {
             this.richtigeAntworten = 0
             this.checkButton = "Quiz Starten"
             this.antwortUeberprueft = false
+        }),
+        eventBus.$on('ersteFrageAufrufen', () => {
+            if (this.aktuelleFrage == 0) {
+                this.naechsteFrage()
+            }
         })
     }
     

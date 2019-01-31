@@ -33,6 +33,7 @@ export default {
     created() {
         eventBus.$on('gameStopped', () => {
             this.gameRunning = false
+            this.ausgewaehltesQuiz = 1
         })
     }
 }
