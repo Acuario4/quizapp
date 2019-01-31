@@ -1,9 +1,5 @@
 <template>
-    <div class="titleDiv">
-         <br>
-        <h1>Quiz App</h1>
-        <br> 
-    </div>
+    <div class="titleDiv">Quiz App</div>
 </template>
 
 <script>
@@ -13,16 +9,15 @@ export default {
 </script>
 
 <style>
-    h1 {
+
+    .titleDiv {
         text-align: center;
         font-size: 250%;
-        margin: 5px auto;
-    }
-    .titleDiv {
-        margin: 10px auto;
-        max-width: 80%;
-        padding: 0px;
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
+        background-color: #c01c00;
+        color: white;
+        font-weight: bold;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0.3em;
     }
 </style>

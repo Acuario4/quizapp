@@ -42,7 +42,7 @@ export default {
 .startMenu {
     text-align: center;
     align-content: center;
-    margin: 10%;
+    margin: 1em;
 }
 
 .startButton {

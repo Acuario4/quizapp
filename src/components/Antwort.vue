@@ -1,14 +1,14 @@
 <template>
-    <div>
-            <ul class="antwortUL" 
-                :style="[{backgroundColor: this.antwortColor[0]},{border: this.antwortBorder[0]}]" 
-                v-if="antwortKennung == antwort.id" 
-                style="cursor: pointer" 
+    <div class="antwortbox">
+            <div class="antwortUL"
+                :style="[{backgroundColor: this.antwortColor[0]},{border: this.antwortBorder[0]}]"
+                v-if="antwortKennung == antwort.id"
+                style="cursor: pointer"
                 @click="antwortGewaehlt(1)">{{ antwort.A1 }}
-                </ul>
-            <ul class="antwortUL" :style="[{backgroundColor: this.antwortColor[1]},{border: this.antwortBorder[1]}]" v-if="antwortKennung == antwort.id" style="cursor: pointer" @click="antwortGewaehlt(2)">{{ antwort.A2 }}</ul>
-            <ul class="antwortUL" :style="[{backgroundColor: this.antwortColor[2]},{border: this.antwortBorder[2]}]" v-if="antwortKennung == antwort.id" style="cursor: pointer" @click="antwortGewaehlt(3)">{{ antwort.A3 }}</ul>
-            <ul class="antwortUL" :style="[{backgroundColor: this.antwortColor[3]},{border: this.antwortBorder[3]}]" v-if="antwortKennung == antwort.id" style="cursor: pointer" @click="antwortGewaehlt(4)">{{ antwort.A4 }}</ul>
+                </div>
+            <div class="antwortUL" :style="[{backgroundColor: this.antwortColor[1]},{border: this.antwortBorder[1]}]" v-if="antwortKennung == antwort.id" style="cursor: pointer" @click="antwortGewaehlt(2)">{{ antwort.A2 }}</div>
+            <div class="antwortUL" :style="[{backgroundColor: this.antwortColor[2]},{border: this.antwortBorder[2]}]" v-if="antwortKennung == antwort.id" style="cursor: pointer" @click="antwortGewaehlt(3)">{{ antwort.A3 }}</div>
+            <div class="antwortUL" :style="[{backgroundColor: this.antwortColor[3]},{border: this.antwortBorder[3]}]" v-if="antwortKennung == antwort.id" style="cursor: pointer" @click="antwortGewaehlt(4)">{{ antwort.A4 }}</div>
     </div>
 </template>
 
@@ -69,13 +69,22 @@ export default {
 </script>
 
 <style>
+  .antwortbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 .antwortUL {
+    padding: 1em;
+    margin: 1em;
+    min-width: 200px;
+    width: 300px;
     background-color: rgba(167, 167, 167, 0.5);
     border: 1px solid gray
 }
 
 .richtigUL {
-    background-color: rgba(172, 255, 47, 0.75) 
+    background-color: rgba(172, 255, 47, 0.75)
 }
 
 .falschUL {
@@ -83,6 +92,6 @@ export default {
 }
 
 .gewaehltUL {
-    background-color: rgb(0, 238, 255)
+    background-color: rgba(57, 79, 178, 0.7)
 }
 </style>
