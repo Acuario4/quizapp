@@ -1,12 +1,12 @@
 <template>
-    <div class="startMenu" v-if="!gameRunning">
+    <div class="startmenu" v-if="!gameRunning">
         <p>Quiz zum Thema: </p>
         <select required name="Quiz Thema auswählen" id="mySelect" @change="setQuiz()">
             <option value="1">Informatik</option>
             <option value="2">Mathematik</option>
         </select>
         <br>
-        <button class="startButton" @click="startGame()">Thema auswählen</button>
+        <button class="startbutton" @click="startGame()">Thema auswählen</button>
     </div>
 </template>
 
@@ -40,13 +40,13 @@ export default {
 </script>
 
 <style>
-.startMenu {
+.startmenu {
     text-align: center;
     align-content: center;
     margin: 1em;
 }
 
-.startButton {
+.startbutton {
     margin: 3%;
 }
 </style>
