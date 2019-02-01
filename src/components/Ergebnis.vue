@@ -2,7 +2,7 @@
   <div>
     <h3><span class="span1"><strong>{{ nachrichten.text1 }}</strong></span> {{ nachrichten.text3}} {{richtigeAntworten}}
       von 10 Fragen richtig beantwortet <br> <span class="span2">{{ nachrichten.text2 }}</span></h3>
-    <button @click="stopGame()">Zurück zum Hauptmenü</button>
+    <button @click="stopGame()" class="backToMenuButton">Zurück zum Hauptmenü</button>
   </div>
 </template>
 
@@ -72,5 +72,8 @@
 
   .span2 {
     line-height: 300%;
+  }
+  .backToMenuButton :hover {
+    cursor: pointer;
   }
 </style>

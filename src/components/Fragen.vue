@@ -4,8 +4,8 @@
         <div class="fragenDiv2">
             <quiz-fragen v-for="frage in Fragen" :key="frage.id" :frage="frage" :ausgewaehltesQuiz="ausgewaehltesQuiz"></quiz-fragen>
             <quiz-antworten class="antwortenDiv" :ausgewaehltesQuiz="ausgewaehltesQuiz"></quiz-antworten>
-            <button @click="antwortUeberpruefen()" v-if="!this.antwortUeberprueft && this.gewaehlteAntwort > 0">Antwort überprüfen</button>
-            <button @click="naechsteFrage()" v-if="(this.antwortUeberprueft && this.gewaehlteAntwort > 0) || this.aktuelleFrage == 0">{{ checkButton }}</button>
+            <button @click="antwortUeberpruefen()" v-if="!this.antwortUeberprueft && this.gewaehlteAntwort > 0" class="antwortPrüfenButton">Antwort überprüfen</button>
+            <button @click="naechsteFrage()" v-if="(this.antwortUeberprueft && this.gewaehlteAntwort > 0) || this.aktuelleFrage == 0" class="nächsteFrageButton">{{ checkButton }}</button>
             <quiz-ergebnis v-if="this.aktuelleFrage == 11" :richtigeAntworten="richtigeAntworten"></quiz-ergebnis>
         </div>
     </div>
@@ -124,5 +124,11 @@ h2 {
 }
 .antwortenDiv {
     text-align: left;
+}
+.antwortPrüfenButton :hover {
+    cursor: pointer;
+}
+.nächsteFrageButton :hover {
+    cursor: pointer;
 }
 </style>

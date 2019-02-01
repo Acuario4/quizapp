@@ -96,11 +96,11 @@ export default {
 }
 
 .falschUL {
-    background-color: #c01c00E0 !important
+    background-color: rgba(192, 28, 0, 0.9) !important
 }
 
 .gewaehltUL {
     background-color: rgba(57, 79, 178, 0.7);
-    border: 3px double gray
+    border: 3px double rgb(128, 128, 128)
 }
 </style>
