@@ -18,4 +18,16 @@ public class FrageTest {
         frage.addAntwort("42");
         assertEquals(1, frage.getAnzahlAntworten());
     }
+
+    @Test
+    public void testAntwortenSizeZero() {
+        Frage frage = new Frage("Was ist die Antwort?");
+        assertEquals(0, frage.getAnzahlAntworten());
+    }
+
+    @Test
+    public void testAntwortenSizeZero2() {
+        Frage frage = new Frage();
+        assertEquals(0, frage.getAnzahlAntworten());
+    }
 }
