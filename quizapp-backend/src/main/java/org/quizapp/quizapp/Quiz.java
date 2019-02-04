@@ -1,39 +1,51 @@
 package org.quizapp.quizapp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Quiz {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
+    private String name;
 
-    private String frage;
-    private String antwort;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "quiz")
+    @OrderColumn(name = "frage_index")
+    private List<Frage> fragen = new ArrayList<>();
 
-    public int getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getFrage() {
-        return frage;
+    public String getName() {
+        return name;
     }
 
-    public void setFrage(String frage) {
-        this.frage = frage;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAntwort() {
-        return antwort;
+    List<Frage> getFragen() {
+        return fragen;
     }
 
-    public void setAntwort(String antwort) {
-        this.antwort = antwort;
+    void setFragen(List<Frage> fragen) {
+        this.fragen = fragen;
+    }
+
+    void addFrage(Frage frage) {
+        frage.setQuiz(this);
+        fragen.add(frage);
     }
 }
