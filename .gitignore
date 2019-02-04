@@ -16,3 +16,8 @@ target
 *.ntvs*
 *.njsproj
 *.sln
+
+.classpath
+.settings
+.project
+
