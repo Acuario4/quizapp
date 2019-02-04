@@ -43,7 +43,7 @@ export default {
                 
 
             ],
-            Quiz : [{quizId:1, name: "Informatik", fragen: [
+            Quiz : [{quizId:1, name: "Informatik", author: "Lennart G.", fragen: [
                 {text: "Was ist der Affengriff für Windows-Nutzer?", antworten: [
                     "[Strg] + [Alt] + [Shift]","[Strg] + [Alt] + [Entf]","[Strg] + [Alt] + [Einfg]","[Strg] + [Alt] + [Esc]"
                 ], richtig: 2},
@@ -75,7 +75,7 @@ export default {
                     "32","1080","7158","23445"
                 ], richtig: 3}
             ]},
-            {quizId:2, name: "Mathematik", fragen: [
+            {quizId:2, name: "Mathematik", author: "Lennart G.", fragen: [
                 {text:"Was ist die Summe der Zahlen von 1 bis 10?", antworten: [
                     "48","50","55","58"
                 ], richtig: 3},
