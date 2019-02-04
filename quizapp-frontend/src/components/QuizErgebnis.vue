@@ -2,35 +2,34 @@
   <div>
     <h3><span class="span1"><strong>{{ nachrichten.text1 }}</strong></span> {{ nachrichten.text3}} {{richtigeAntworten}}
       von 10 Fragen richtig beantwortet <br> <span class="span2">{{ nachrichten.text2 }}</span></h3>
-    <button @click="stopGame()" class="backToMenuButton">Zurück zum Hauptmenü</button>
+    <button @click="$emit('click')" class="backToMenuButton">Zurück zum Hauptmenü</button>
   </div>
 </template>
 
 <script>
-  import {eventBus} from "../main.js";
-
   export default {
-    props: ['richtigeAntworten'],
+    props: {
+      'richtigeAntworten': {
+        type: Number,
+        required: true
+      }
+    },
     data: function () {
       return {
         nachricht1: '',
         nachricht2: ''
       }
     },
-    methods: {
-      stopGame() {
-        eventBus.$emit('gameStopped')
-      }
-    },
+
     computed: {
       nachrichten() {
-        if (this.richtigeAntworten == 0) {
+        if (this.richtigeAntworten === 0) {
           return {
             text1: 'Schade! ',
             text3: 'Du hast keine, also wirklich ',
             text2: 'Mehr Glück (oder zumnindest etwas Glück) beim nächsten Mal'
           }
-        } else if (this.richtigeAntworten == 1) {
+        } else if (this.richtigeAntworten === 1) {
           return {
             text1: 'Glückwunsch! ',
             text3: "Du hast ",
@@ -42,7 +41,7 @@
             text3: "Du hast ",
             text2: 'Es hätte auch schlimmer werden können!'
           }
-        } else if (this.richtigeAntworten == 5) {
+        } else if (this.richtigeAntworten === 5) {
           return {
             text1: 'Glückwunsch! ',
             text3: "Du hast ",
@@ -73,6 +72,7 @@
   .span2 {
     line-height: 300%;
   }
+
   .backToMenuButton :hover {
     cursor: pointer;
   }

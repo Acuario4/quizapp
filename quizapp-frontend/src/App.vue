@@ -2,15 +2,15 @@
   <div class="app">
     <quiz-title></quiz-title>
     <quiz-menu></quiz-menu>
-    <quiz-frage></quiz-frage>
+    <quiz-container></quiz-container>
     <div class="footer">by Lennart</div>
   </div>
 </template>
 
 <script>
-  import Title from './components/Title.vue'
-  import Frage from './components/Fragen.vue'
-  import Menu from './components/StarterMenu.vue'
+  import QuizTitle from './components/QuizTitle.vue'
+  import QuizContainer from './components/QuizContainer.vue'
+  import QuizMenu from './components/QuizMenu.vue'
   import {eventBus} from './main.js'
 
   export default {
@@ -20,9 +20,9 @@
       }
     },
     components: {
-      quizTitle: Title,
-      quizFrage: Frage,
-      quizMenu: Menu
+      QuizTitle,
+      QuizContainer,
+      QuizMenu
     },
     created() {
       eventBus.$on('gameStopped', () => {

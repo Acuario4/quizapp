@@ -2,12 +2,6 @@
     <div class="titleDiv">Quiz App</div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style>
 
     .titleDiv {
