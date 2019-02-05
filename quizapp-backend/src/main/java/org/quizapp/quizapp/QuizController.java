@@ -1,5 +1,6 @@
 package org.quizapp.quizapp;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,6 +17,7 @@ public class QuizController {
         return quizRepository.findAll();
     }
 
+    @Transactional
     @GetMapping(ApiUrls.API_QUIZ_ID)
     public Quiz get(@PathVariable int id) {
         return quizRepository.findById(id).orElse(null);

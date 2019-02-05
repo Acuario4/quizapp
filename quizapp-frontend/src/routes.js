@@ -3,13 +3,13 @@ import Router from "vue-router";
 
 import Impressum from "./components/Impressum";
 import QuizErstellen from "./components/QuizErstellen";
-import Quiz from "./components/Quiz";
+import QuizManager from "./components/QuizManager";
 
 Vue.use(Router);
 
 const routes = [
+  {path: '/', component: QuizManager},
   {path: '/impressum', component: Impressum},
-  {path: '/', component: Quiz},
   {path: '/quizerstellen', component: QuizErstellen}
 ];
 

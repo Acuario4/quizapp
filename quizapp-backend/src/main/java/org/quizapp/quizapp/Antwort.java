@@ -10,9 +10,6 @@ public class Antwort {
 
     private Integer index;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Frage frage;
-
     private String text;
 
     Antwort() {}
@@ -35,14 +32,6 @@ public class Antwort {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public Frage getFrage() {
-        return frage;
-    }
-
-    public void setFrage(Frage frage) {
-        this.frage = frage;
     }
 
     public Integer getIndex() {

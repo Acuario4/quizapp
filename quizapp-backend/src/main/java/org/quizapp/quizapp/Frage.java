@@ -10,19 +10,18 @@ public class Frage {
     @GeneratedValue
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Quiz quiz;
-
     private String text;
     private Integer richtig;
 
     private Integer index;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "frage")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "frage_id")
     @OrderColumn(name = "antwort_index")
     private List<Antwort> antworten = new ArrayList<>();
 
-    Frage() {}
+    Frage() {
+    }
 
     public Frage(String text) {
         this.text = text;
@@ -30,7 +29,6 @@ public class Frage {
 
     public void addAntwort(String antwortText) {
         Antwort antwort = new Antwort(antwortText);
-        antwort.setFrage(this);
         antworten.add(antwort);
     }
 
@@ -72,14 +70,6 @@ public class Frage {
 
     public void setIndex(Integer index) {
         this.index = index;
-    }
-
-    public Quiz getQuiz() {
-        return quiz;
-    }
-
-    public void setQuiz(Quiz quiz) {
-        this.quiz = quiz;
     }
 
     public int getAnzahlAntworten() {

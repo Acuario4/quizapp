@@ -15,10 +15,10 @@ public class Quiz {
     private Integer id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "quiz")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "quiz_id")
     @OrderColumn(name = "frage_index")
     private List<Frage> fragen = new ArrayList<>();
-
 
     public Integer getId() {
         return id;
@@ -36,16 +36,16 @@ public class Quiz {
         this.name = name;
     }
 
-    List<Frage> getFragen() {
+    public List<Frage> getFragen() {
         return fragen;
     }
 
-    void setFragen(List<Frage> fragen) {
+    public void setFragen(List<Frage> fragen) {
         this.fragen = fragen;
     }
 
     void addFrage(Frage frage) {
-        frage.setQuiz(this);
+        // frage.setQuiz(this);
         fragen.add(frage);
     }
 }

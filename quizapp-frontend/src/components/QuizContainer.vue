@@ -1,8 +1,8 @@
 <template>
   <div class="fragenDiv1" v-if="gameStarted">
-    <h2>{{ Themen[this.ausgewaehltesQuiz-1] }}</h2>
+    <h2>{{ quiz.name }}</h2>
 
-    <div class="fragenDiv2" v-if="this.aktuelleFrage < 11">
+    <div v-if="this.aktuelleFrage < 11">
       <quiz-frage :frage="anzeigeFrage"></quiz-frage>
       <div class="antwortbox">
         <quiz-antwort
@@ -35,13 +35,12 @@
   import QuizAntwort from "./QuizAntwort.vue"
   import QuizFrage from "./QuizFrage.vue"
   import QuizErgebnis from "./QuizErgebnis"
-  import Fragen from '../store.js';
+  import quiz from '../store.js';
 
   export default {
     data: function () {
       return {
-        Fragen: Fragen,
-        Themen: ["Informatik", "Mathematik", "Chemie"],
+        quiz,
         aktuelleFrage: 0,
         ausgewaehltesQuiz: 0,
         gewaehlteAntwort: 0,
@@ -58,7 +57,7 @@
     },
     computed: {
       anzeigeFrage() {
-        return this.Fragen[this.aktuelleFrage - 1];
+        return this.quiz.fragen[this.aktuelleFrage - 1];
       }
     },
     mounted() {
@@ -98,11 +97,11 @@
       antwortUeberpruefen() {
         this.antwortUeberprueft = true;
         if (this.aktuelleFrage !== 0) {
-          if (this.Fragen[this.aktuelleFrage - 1].richtig === this.gewaehlteAntwort) {
+          if (this.quiz.fragen[this.aktuelleFrage - 1].richtig === this.gewaehlteAntwort) {
             this.richtigeAntworten++
           }
         }
-        eventBus.$emit('antwortUeberprueft', this.Fragen[this.aktuelleFrage - 1].richtig)
+        eventBus.$emit('antwortUeberprueft', this.quiz.fragen[this.aktuelleFrage - 1].richtig)
       },
     },
     created() {
@@ -130,23 +129,17 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    text-align: center;
   }
 
-  /*.antwortUnterbox {*/
-  /*display: flex;*/
-  /*flex-direction: row;*/
-  /*flex-wrap: nowrap;*/
-  /*}*/
-
   .fragenDiv1 {
+    max-width: 800px;
     align-content: center;
     text-align: center;
-    margin: 3%;
+    margin: 0 auto;
   }
 
   .fragenDiv2 {
-    align-content: center;
-    text-align: center;
     margin: 5%;
   }
 

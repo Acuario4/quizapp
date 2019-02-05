@@ -2,16 +2,16 @@
   <div class="app">
     <quiz-title></quiz-title>
     <router-view></router-view>
-    <div class="footer"><router-link to="/impressum">by Lennart</router-link></div>
+    <quiz-footer></quiz-footer>
   </div>
 </template>
 
 <script>
   import QuizTitle from './components/QuizTitle'
-
+import QuizFooter  from './components/QuizFooter'
   export default {
     name: "App",
-    components: { QuizTitle }
+    components: { QuizTitle, QuizFooter }
   }
 
 </script>
@@ -22,8 +22,4 @@
     font-family: Arial,sans-serif;
   }
 
-  .footer {
-    padding: 1em;
-    border-top: 1px solid #ddd;
-  }
 </style>
