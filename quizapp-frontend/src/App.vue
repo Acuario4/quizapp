@@ -8,7 +8,7 @@
 
 <script>
   import QuizTitle from './components/QuizTitle'
-import QuizFooter  from './components/QuizFooter'
+  import QuizFooter  from './components/QuizFooter'
   export default {
     name: "App",
     components: { QuizTitle, QuizFooter }
