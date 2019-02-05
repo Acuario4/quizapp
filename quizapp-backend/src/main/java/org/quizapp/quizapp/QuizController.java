@@ -11,17 +11,17 @@ public class QuizController {
         this.quizRepository = quizRepository;
     }
 
-    @GetMapping("/quiz/")
+    @GetMapping(ApiUrls.API_QUIZ)
     public Iterable<Quiz> get() {
         return quizRepository.findAll();
     }
 
-    @GetMapping("/quiz/{id}")
+    @GetMapping(ApiUrls.API_QUIZ_ID)
     public Quiz get(@PathVariable int id) {
         return quizRepository.findById(id).orElse(null);
     }
 
-    @PostMapping("/quiz/")
+    @PostMapping(ApiUrls.API_QUIZ)
     public Quiz postQuiz(@RequestBody Quiz quiz) {
         return quizRepository.save(quiz);
     }

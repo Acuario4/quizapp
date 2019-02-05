@@ -28,7 +28,7 @@ public class QuizControllerTest {
 
         webTestClient
                 .post()
-                .uri("/quiz/")
+                .uri(ApiUrls.API_QUIZ)
                 .syncBody(quiz)
                 .exchange()
                 .expectStatus()

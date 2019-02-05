@@ -1,52 +1,50 @@
 <template>
-    <div class="startmenu" v-if="!gameRunning">
-        <p>Quiz zum Thema: </p>
-        <select required name="Quiz Thema auswählen" id="mySelect" @change="setQuiz()">
-            <option value="1">Informatik</option>
-            <option value="2">Mathematik</option>
-        </select>
-        <br>
-        <button class="startbutton" @click="startGame()">Thema auswählen</button>
-    </div>
+  <div class="startmenu" v-if="!gameRunning">
+    <p>Quiz zum Thema: </p>
+    <select required name="Quiz Thema auswählen" id="mySelect" @change="setQuiz()">
+      <option value="1">Informatik</option>
+      <option value="2">Mathematik</option>
+    </select> <br>
+    <button class="startbutton" @click="startGame()">Thema auswählen</button>
+  </div>
 </template>
 
 <script>
-import { eventBus } from "../main.js";
-export default {
-    data: function() {
-        return {
-            gameRunning: false,
-            ausgewaehltesQuiz: 1,
-        }
+  import eventBus from "../eventbus";
+
+  export default {
+    data: function () {
+      return {
+        gameRunning: false,
+        ausgewaehltesQuiz: 1,
+      }
     },
     methods: {
-        startGame() {
-            this.gameRunning = true
-            eventBus.$emit('gameStarted', this.ausgewaehltesQuiz)
-        },
-        setQuiz() {
-            this.ausgewaehltesQuiz = document.getElementById("mySelect").value;
-            console.log('Neue Selection: '+this.ausgewaehltesQuiz)
-            console.log('Neue Selection: '+(this.ausgewaehltesQuiz+3))
-        }
+      startGame() {
+        this.gameRunning = true
+        eventBus.$emit('gameStarted', this.ausgewaehltesQuiz)
+      },
+      setQuiz() {
+        this.ausgewaehltesQuiz = document.getElementById("mySelect").value;
+      }
     },
     created() {
-        eventBus.$on('gameStopped', () => {
-            this.gameRunning = false
-            this.ausgewaehltesQuiz = 1
-        })
+      eventBus.$on('gameStopped', () => {
+        this.gameRunning = false
+        this.ausgewaehltesQuiz = 1
+      })
     }
-}
+  }
 </script>
 
 <style>
-.startmenu {
+  .startmenu {
     text-align: center;
     align-content: center;
     margin: 1em;
-}
+  }
 
-.startbutton {
+  .startbutton {
     margin: 3%;
-}
+  }
 </style>

@@ -1,37 +1,20 @@
 <template>
   <div class="app">
     <quiz-title></quiz-title>
-    <quiz-menu></quiz-menu>
-    <quiz-container></quiz-container>
-    <div class="footer">by Lennart</div>
+    <router-view></router-view>
+    <div class="footer"><router-link to="/impressum">by Lennart</router-link></div>
   </div>
 </template>
 
 <script>
-  import QuizTitle from './components/QuizTitle.vue'
-  import QuizContainer from './components/QuizContainer.vue'
-  import QuizMenu from './components/QuizMenu.vue'
-  import {eventBus} from './main.js'
+  import QuizTitle from './components/QuizTitle'
 
   export default {
-    data: function () {
-      return {
-        aktuelleFrage: 0
-      }
-    },
-    components: {
-      QuizTitle,
-      QuizContainer,
-      QuizMenu
-    },
-    created() {
-      eventBus.$on('gameStopped', () => {
-        this.aktuelleFrage = 0
-      })
-    }
+    name: "App",
+    components: { QuizTitle }
   }
-</script>
 
+</script>
 <style>
   body {
     padding: 0;

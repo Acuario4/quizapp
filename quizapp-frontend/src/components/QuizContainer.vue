@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import {eventBus} from "../main.js";
+  import eventBus from "../eventbus.js";
   import QuizAntwort from "./QuizAntwort.vue"
   import QuizFrage from "./QuizFrage.vue"
   import QuizErgebnis from "./QuizErgebnis"
