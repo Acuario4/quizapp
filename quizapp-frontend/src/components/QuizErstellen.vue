@@ -19,7 +19,7 @@
               <div><input type="radio" value="3" v-model="form.fragen[i-1].richtig" :id="'richtig' + i" /><label :for="'richtig' + i">Antwort 3</label></div>
               <div><input type="radio" value="4" v-model="form.fragen[i-1].richtig" :id="'richtig' + i" /><label :for="'richtig' + i">Antwort 4</label></div>
             </div>
-            <button type="button" @click="popFrage()">Diese Frage löschen</button>
+            <button type="button" @click="popFrage(i-1)">Letzte Frage löschen</button>
           </div>
         </div>
         <div class="UnterBox">
@@ -53,12 +53,14 @@
         errorMessage: '',
         emptyError: false,
         emptyErrorMessage: '',
+        richtigeBedingungen: 0,
         sichtbarkeit: [true],
         form: {
           name: '',
           fragen: [
             {
               text: '',
+              richtig: 0,
               antworten: []
             }
           ]
@@ -70,9 +72,9 @@
       addFrage() {
         for (let index = 0; index < this.form.fragen.length; index++) {
           // https://vuejs.org/v2/guide/list.html#Caveats
-          this.$set(this.sichtbarkeit, index, !this.sichtbarkeit[index]);
+          this.$set(this.sichtbarkeit, index, false);
         }
-        this.form.fragen.push({text: '', antworten: []})
+        this.form.fragen.push({text: '', richtig: 0, antworten: []})
       },
       frageclick(index) {
         // https://vuejs.org/v2/guide/list.html#Caveats
@@ -83,17 +85,14 @@
           if (this.form.fragen[i].text != "" && this.form.fragen[i].antworten.length == 4 && (this.form.fragen[i].antworten[0] != "" || this.form.fragen[i].antworten[0] != null) && (this.form.fragen[i].antworten[1] != "" || this.form.fragen[i].antworten[1] != null) && (this.form.fragen[i].antworten[2] != "" || this.form.fragen[i].antworten[2] != null) && (this.form.fragen[i].antworten[3] != "" || this.form.fragen[i].antworten[3] != null)) {
             if (this.form.name != '' && this.form.name != 'Bitte gib den Namen Deines neuen Quiz ein.') {
               if (this.form.name.length > 3 && this.form.name.length < 25) {
-                return axios.post("/api/quiz/", this.form)
-                  .then(response => {
-                    console.log(response.data);
-                    this.$router.push("/");
-                  })
-                  .catch(error => {
-                    this.error = true;
-                    this.errorMessage = error.response.data;
-                  });
+                if (this.form.fragen[i].richtig != 0) {
+                    this.richtigeBedingungen++ 
+                } else {
+                  this.emptyErrorMessage = 'Bitte wähle eine richtige Antwort für deine Fragen aus.'
+                  this.emptyError = true;
+                }
               } else {
-                this.emptyErrorMessage = 'Der Name deines Quiz muss 4 - 24 Buchstaben besitzen';
+                this.emptyErrorMessage = 'Der Name deines Quiz muss 4 - 24 Buchstaben besitzen.';
                 this.emptyError = true;
               }
 
@@ -106,11 +105,32 @@
             this.emptyError = true;
           }
         }
+        if (this.richtigeBedingungen == this.form.fragen.length) {
+          this.richtigeBedingungen = 0;
+          return axios.post("/api/quiz/", this.form)
+                  .then(response => {
+                      console.log(response.data);
+                      this.$router.push("/");
+                    })
+                    .catch(error => {
+                      this.error = true;
+                      this.errorMessage = error.response.data;
+                    });
+        } else {
+          this.richtigeBedingungen = 0
+        }
       },
-      popFrage() {
+      popFrage(index) {
         if (this.form.fragen.length > 1) {
           this.sichtbarkeit.pop();
-          this.form.fragen.pop()
+          this.form.fragen.pop();
+        //   this.form.fragen[index] = null
+        // for (let i = 0; i < this.form.fragen.length; i++) {
+        //   if (this.form.fragen[i] == null) {
+        //     this.form.fragen[i] = this.form.fragen[i+1]
+        //     this.form.fragen[i+1] = null
+        //   }
+        // }
         }
       }
     }
@@ -173,7 +193,7 @@
   }
 
   .fade-leave {
-
+    opacity: 1;
   }
 
   .fade-leave-active {

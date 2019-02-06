@@ -26,7 +26,7 @@
               class="nächsteFrageButton">{{ checkButton }}
       </button>
     </div>
-    <quiz-ergebnis @click="gameStopped()" v-if="this.aktuelleFrage === 11" :richtigeAntworten="richtigeAntworten"></quiz-ergebnis>
+    <quiz-ergebnis @click="gameStopped()" v-if="this.aktuelleFrage === quiz.fragen.length+1" :richtigeAntworten="richtigeAntworten" :quizlaenge="quiz.fragen.length"></quiz-ergebnis>
   </div>
 </template>
 
@@ -43,7 +43,7 @@
         aktuelleFrage: 0,
         gewaehlteAntwort: 0,
         richtigeAntworten: 0,
-        checkButton: "Quiz Starten",
+        checkButton: "Nächste Frage",
         antwortUeberprueft: false,
         gameStarted: false
       }
@@ -68,7 +68,7 @@
         this.aktuelleFrage = 0;
         this.gewaehlteAntwort = 0;
         this.richtigeAntworten = 0;
-        this.checkButton = "Quiz Starten";
+        this.checkButton = "Nächste Frage";
         this.antwortUeberprueft = false;
         eventBus.$emit('gameStopped');
       },
@@ -82,9 +82,9 @@
         this.aktuelleFrage++;
         this.gewaehlteAntwort = 0;
         this.antwortUeberprueft = false;
-        if (this.aktuelleFrage === 10) {
+        if (this.aktuelleFrage === this.quiz.fragen.length) {
           this.checkButton = 'Ergebnis anschauen'
-        } else if (this.aktuelleFrage === 11) {
+        } else if (this.aktuelleFrage === this.quiz.fragen.length+1) {
           eventBus.$emit('ergebnisseAnschauen', this.richtigeAntworten)
         } else {
           this.checkButton = 'Nächste Frage'
