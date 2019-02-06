@@ -12,6 +12,13 @@
             <input-feld label="Antwort 2" v-model="form.fragen[i-1].antworten[1]"></input-feld>
             <input-feld label="Antwort 3" v-model="form.fragen[i-1].antworten[2]"></input-feld>
             <input-feld label="Antwort 4" v-model="form.fragen[i-1].antworten[3]"></input-feld>
+            <div>
+              <p>Richtige Antwort</p>
+              <div><input type="radio" value="1" v-model="form.fragen[i-1].richtig" :id="'richtig' + i" /><label :for="'richtig' + i">Antwort 1</label></div>
+              <div><input type="radio" value="2" v-model="form.fragen[i-1].richtig" :id="'richtig' + i" /><label :for="'richtig' + i">Antwort 2</label></div>
+              <div><input type="radio" value="3" v-model="form.fragen[i-1].richtig" :id="'richtig' + i" /><label :for="'richtig' + i">Antwort 3</label></div>
+              <div><input type="radio" value="4" v-model="form.fragen[i-1].richtig" :id="'richtig' + i" /><label :for="'richtig' + i">Antwort 4</label></div>
+            </div>
             <button type="button" @click="popFrage()">Diese Frage löschen</button>
           </div>
         </div>
@@ -29,7 +36,7 @@
         }}
       </div>
     </transition>
-    <p v-for="frage in form.fragen" :key="frage.id">{{ frage }}</p>
+    <!--<p v-for="frage in form.fragen" :key="frage.id">{{ frage }}</p>-->
   </div>
 </template>
 
@@ -65,7 +72,7 @@
           // https://vuejs.org/v2/guide/list.html#Caveats
           this.$set(this.sichtbarkeit, index, !this.sichtbarkeit[index]);
         }
-        this.form.fragen.push({ text: '', antworten: []})
+        this.form.fragen.push({text: '', antworten: []})
       },
       frageclick(index) {
         // https://vuejs.org/v2/guide/list.html#Caveats
@@ -126,6 +133,8 @@
 
   .fragebox {
     border-bottom: 1px solid #ddd;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
   }
 
   .quizerstellen {

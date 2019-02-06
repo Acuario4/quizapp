@@ -1,19 +1,24 @@
 <template>
   <div>
     <div>
-      <p class="einzelneFrage">Frage {{ frage.id }}: {{ frage.text }}</p>
+      <div class="nummer">Frage {{ nummer }}</div>
+      <div class="frage">{{ frage.text }}</div>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    props: ['frage'],
+    props: ['nummer', 'frage'],
   }
 </script>
 
 <style>
-  .einzelneFrage {
-    font-size: 100%;
+  .nummer {
+      color: #555;
+  }
+  .frage {
+    color: #333;
+    font-weight: bold;
   }
 </style>

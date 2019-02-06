@@ -2,8 +2,8 @@
   <div class="fragenDiv1" v-if="gameStarted">
     <h2>{{ quiz.name }}</h2>
 
-    <div v-if="this.aktuelleFrage < 11">
-      <quiz-frage :frage="anzeigeFrage"></quiz-frage>
+    <div v-if="aktuelleFrage < quiz.fragen.length + 1 ">
+      <quiz-frage :nummer="aktuelleFrage" :frage="anzeigeFrage"></quiz-frage>
       <div class="antwortbox">
         <quiz-antwort
           @click="antwortGewaehlt(index + 1)"
