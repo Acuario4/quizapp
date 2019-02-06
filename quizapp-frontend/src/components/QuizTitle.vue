@@ -1,5 +1,5 @@
 <template>
-    <div class="titleDiv">Quiz App</div>
+  <div class="titleDiv"><router-link to="/">Quiz App</router-link></div>
 </template>
 
 <style>
@@ -10,8 +10,14 @@
         background-color: #c01c00;
         color: white;
         font-weight: bold;
-        width: 100%;
         margin: 0 auto;
         padding: 0.3em;
     }
+
+    .titleDiv a {
+      text-decoration: none;
+      color: white;
+      outline: 0;
+    }
+
 </style>

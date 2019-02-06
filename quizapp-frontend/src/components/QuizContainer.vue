@@ -9,7 +9,7 @@
           @click="antwortGewaehlt(index + 1)"
           v-for="(antwort, index) in anzeigeFrage.antworten"
           :key="antwort.id"
-          :antwort="antwort"
+          :antwort="antwort.text"
           :clicked="index+1 === gewaehlteAntwort"
           :richtig="index+1 === anzeigeFrage.richtig"
           :checked="antwortUeberprueft"
@@ -35,14 +35,12 @@
   import QuizAntwort from "./QuizAntwort.vue"
   import QuizFrage from "./QuizFrage.vue"
   import QuizErgebnis from "./QuizErgebnis"
-  import quiz from '../store.js';
 
   export default {
     data: function () {
       return {
-        quiz,
+        quiz: {},
         aktuelleFrage: 0,
-        ausgewaehltesQuiz: 0,
         gewaehlteAntwort: 0,
         richtigeAntworten: 0,
         checkButton: "Quiz Starten",
@@ -68,7 +66,6 @@
       gameStopped() {
         this.gameStarted = false;
         this.aktuelleFrage = 0;
-        this.ausgewaehltesQuiz = 0;
         this.gewaehlteAntwort = 0;
         this.richtigeAntworten = 0;
         this.checkButton = "Quiz Starten";
@@ -105,8 +102,9 @@
       },
     },
     created() {
-      eventBus.$on('gameStarted', (ausgewaehltesQuiz) => {
-        this.ausgewaehltesQuiz = ausgewaehltesQuiz;
+      eventBus.$on('gameStarted', (quiz) => {
+        this.quiz = quiz;
+        console.log(this.quiz);
         this.gameStarted = true;
       });
       eventBus.$on('antwortGewaehlt', (gewaehlteAntwort) => {

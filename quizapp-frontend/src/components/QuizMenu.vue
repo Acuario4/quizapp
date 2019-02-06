@@ -1,37 +1,43 @@
 <template>
   <div class="startmenu" v-if="!gameRunning">
-    <p>Quiz zum Thema: </p>
-    <select required name="Quiz Thema auswählen" id="mySelect" @change="setQuiz()">
-      <option value="1">Informatik</option>
-      <option value="2">Mathematik</option>
-    </select> <br>
+    <p><label for="quizauswahl">Quiz zum Thema</label></p>
+    <div>
+      <select required name="Quiz Thema auswählen" id="quizauswahl" v-model="quizIndex">
+        <option v-for="(quiz, index) in quizlist" :key="index" :value="index">{{quiz.name}}</option>
+      </select>
+    </div>
     <button class="startbutton" @click="startGame()">Thema auswählen</button>
   </div>
 </template>
 
 <script>
   import eventBus from "../eventbus";
+  import axios from "axios";
 
   export default {
     data: function () {
       return {
-        gameRunning: false,
-        ausgewaehltesQuiz: 1,
+        quizlist: [],
+        quizIndex: 0,
+        gameRunning: false
       }
+    },
+    mounted() {
+      axios.get("/api/quiz").then(
+        (response) => {
+          this.quizlist = response.data;
+        }
+      )
     },
     methods: {
       startGame() {
-        this.gameRunning = true
-        eventBus.$emit('gameStarted', this.ausgewaehltesQuiz)
+        this.gameRunning = true;
+        eventBus.$emit('gameStarted', this.quizlist[this.quizIndex])
       },
-      setQuiz() {
-        this.ausgewaehltesQuiz = document.getElementById("mySelect").value;
-      }
     },
     created() {
       eventBus.$on('gameStopped', () => {
         this.gameRunning = false
-        this.ausgewaehltesQuiz = 1
       })
     }
   }
