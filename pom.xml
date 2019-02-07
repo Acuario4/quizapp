@@ -37,6 +37,7 @@
         <module>quizapp-backend</module>
     </modules>
     <build>
+        <finalName>quizapp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -13,7 +13,7 @@
         <frontend.files>src/main/resources/public/</frontend.files>
     </properties>
     <build>
-
+        <finalName>quizapp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
