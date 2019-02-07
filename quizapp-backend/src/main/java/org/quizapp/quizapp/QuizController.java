@@ -3,6 +3,8 @@ package org.quizapp.quizapp;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 public class QuizController {
 
@@ -26,5 +28,11 @@ public class QuizController {
     @PostMapping(ApiUrls.API_QUIZ)
     public Quiz postQuiz(@RequestBody Quiz quiz) {
         return quizRepository.save(quiz);
+    }
+
+    @DeleteMapping(ApiUrls.API_QUIZ_ID)
+    public void delete(@PathVariable int id) {
+        Quiz quiz = quizRepository.findById(id).orElse(null);
+        quizRepository.delete(quiz);
     }
 }
