@@ -4,6 +4,7 @@ cd `dirname $0`
 
 mvn --batch-mode release:prepare || exit 1
 mvn release:perform || exit 1
+git pull
 
 scp quizapp-backend/target/quizapp.jar lennart@oslo.vygen.de:
 
