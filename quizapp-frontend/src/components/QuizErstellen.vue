@@ -14,14 +14,14 @@
             <input-feld label="Antwort 4" v-model="form.fragen[i-1].antworten[3]"></input-feld>
             <div>
               <p>Richtige Antwort</p>
-              <div><input type="radio" value="1" v-model="form.fragen[i-1].richtig" :id="'richtig' + i"/><label
-                :for="'richtig' + i">Antwort 1</label></div>
-              <div><input type="radio" value="2" v-model="form.fragen[i-1].richtig" :id="'richtig' + i"/><label
-                :for="'richtig' + i">Antwort 2</label></div>
-              <div><input type="radio" value="3" v-model="form.fragen[i-1].richtig" :id="'richtig' + i"/><label
-                :for="'richtig' + i">Antwort 3</label></div>
-              <div><input type="radio" value="4" v-model="form.fragen[i-1].richtig" :id="'richtig' + i"/><label
-                :for="'richtig' + i">Antwort 4</label></div>
+              <div><input type="radio" value="1" v-model="form.fragen[i-1].richtig" :id="'richtig1-' + i"/><label
+                :for="'richtig1-' + i">Antwort 1</label></div>
+              <div><input type="radio" value="2" v-model="form.fragen[i-1].richtig" :id="'richtig2-' + i"/><label
+                :for="'richtig2-' + i">Antwort 2</label></div>
+              <div><input type="radio" value="3" v-model="form.fragen[i-1].richtig" :id="'richtig3-' + i"/><label
+                :for="'richtig3-' + i">Antwort 3</label></div>
+              <div><input type="radio" value="4" v-model="form.fragen[i-1].richtig" :id="'richtig4-' + i"/><label
+                :for="'richtig4-' + i">Antwort 4</label></div>
             </div>
             <button type="button" @click="popFrage(i-1)">Letzte Frage löschen</button>
           </div>
