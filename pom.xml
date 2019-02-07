@@ -21,6 +21,16 @@
         <tag>quizapp-0.1</tag>
     </scm>
 
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>file:///home/janning/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>file:///home/janning/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <modules>
         <module>quizapp-frontend</module>
