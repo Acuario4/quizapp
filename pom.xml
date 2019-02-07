@@ -4,7 +4,7 @@
 
     <groupId>org.quizapp</groupId>
     <artifactId>quizapp</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
