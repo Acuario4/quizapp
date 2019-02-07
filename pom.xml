@@ -24,11 +24,11 @@
     <distributionManagement>
         <repository>
             <id>releases</id>
-            <url>file:///home/janning/</url>
+            <url>file:///${project.build.directory}/</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
-            <url>file:///home/janning/</url>
+            <url>file:///${project.build.directory}/</url>
         </snapshotRepository>
     </distributionManagement>
 
