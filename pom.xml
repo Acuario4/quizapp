@@ -4,7 +4,7 @@
 
     <groupId>org.quizapp</groupId>
     <artifactId>quizapp</artifactId>
-    <version>0.3</version>
+    <version>0.4-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -18,7 +18,7 @@
         <url>https://github.com/Acuario4/quizapp</url>
         <connection>scm:git:ssh://git@github.com/Acuario4/quizapp.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/Acuario4/quizapp.git</developerConnection>
-        <tag>quizapp-0.3</tag>
+        <tag>quizapp-0.1</tag>
     </scm>
 
     <distributionManagement>
