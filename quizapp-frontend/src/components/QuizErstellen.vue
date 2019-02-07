@@ -86,27 +86,32 @@
             if (this.form.name != '' && this.form.name != 'Bitte gib den Namen Deines neuen Quiz ein.') {
               if (this.form.name.length > 3 && this.form.name.length < 25) {
                 if (this.form.fragen[i].richtig != 0) {
+                  if (this.form.fragen.length >= 3) {
                     this.richtigeBedingungen++ 
+                  } else {
+                    this.emptyErrorMessage = 'Dein Quiz braucht mindestens 3 Fragen'
+                    this.emptyError = true
+                  }
                 } else {
                   this.emptyErrorMessage = 'Bitte wähle eine richtige Antwort für deine Fragen aus.'
-                  this.emptyError = true;
+                  this.emptyError = true
                 }
               } else {
-                this.emptyErrorMessage = 'Der Name deines Quiz muss 4 - 24 Buchstaben besitzen.';
-                this.emptyError = true;
+                this.emptyErrorMessage = 'Der Name deines Quiz muss 4 - 24 Buchstaben besitzen.'
+                this.emptyError = true
               }
 
             } else {
-              this.emptyErrorMessage = 'Dein Quiz braucht einen eigenen Namen.';
-              this.emptyError = true;
+              this.emptyErrorMessage = 'Dein Quiz braucht einen eigenen Namen.'
+              this.emptyError = true
             }
           } else {
-            this.emptyErrorMessage = 'Bitte keine Felder leer lassen.';
-            this.emptyError = true;
+            this.emptyErrorMessage = 'Bitte keine Felder leer lassen.'
+            this.emptyError = true
           }
         }
         if (this.richtigeBedingungen == this.form.fragen.length) {
-          this.richtigeBedingungen = 0;
+          this.richtigeBedingungen = 0
           return axios.post("/api/quiz/", this.form)
                   .then(response => {
                       console.log(response.data);

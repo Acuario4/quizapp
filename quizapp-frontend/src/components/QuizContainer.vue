@@ -65,7 +65,7 @@
     methods: {
       gameStopped() {
         this.gameStarted = false;
-        this.aktuelleFrage = 0;
+        this.aktuelleFrage = 1;
         this.gewaehlteAntwort = 0;
         this.richtigeAntworten = 0;
         this.checkButton = "Nächste Frage";
