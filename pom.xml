@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.quizapp</groupId>
+    <artifactId>quizapp</artifactId>
+    <version>0.4-SNAPSHOT</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.2.RELEASE</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+
+    <packaging>pom</packaging>
+    <scm>
+        <url>https://github.com/Acuario4/quizapp</url>
+        <connection>scm:git:ssh://git@github.com/Acuario4/quizapp.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/Acuario4/quizapp.git</developerConnection>
+        <tag>quizapp-0.1</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>file:///${project.build.directory}/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>file:///${project.build.directory}/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <modules>
+        <module>quizapp-frontend</module>
+        <module>quizapp-backend</module>
+    </modules>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M2</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.3.9</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <!-- Frontend and Backend should always have the same version -->
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+  

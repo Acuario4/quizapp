@@ -4,9 +4,20 @@ dist/
 npm-debug.log
 yarn-error.log
 
+node
+
+target
+
+*.iml
+
 # Editor directories and files
 .idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
+
+.classpath
+.settings
+.project
+
