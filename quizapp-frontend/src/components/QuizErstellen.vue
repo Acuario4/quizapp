@@ -14,10 +14,14 @@
             <input-feld label="Antwort 4" v-model="form.fragen[i-1].antworten[3]"></input-feld>
             <div>
               <p>Richtige Antwort</p>
-              <div><input type="radio" value="1" v-model="form.fragen[i-1].richtig" :id="'richtig' + i" /><label :for="'richtig' + i">Antwort 1</label></div>
-              <div><input type="radio" value="2" v-model="form.fragen[i-1].richtig" :id="'richtig' + i" /><label :for="'richtig' + i">Antwort 2</label></div>
-              <div><input type="radio" value="3" v-model="form.fragen[i-1].richtig" :id="'richtig' + i" /><label :for="'richtig' + i">Antwort 3</label></div>
-              <div><input type="radio" value="4" v-model="form.fragen[i-1].richtig" :id="'richtig' + i" /><label :for="'richtig' + i">Antwort 4</label></div>
+              <div><input type="radio" value="1" v-model="form.fragen[i-1].richtig" :id="'richtig' + i"/><label
+                :for="'richtig' + i">Antwort 1</label></div>
+              <div><input type="radio" value="2" v-model="form.fragen[i-1].richtig" :id="'richtig' + i"/><label
+                :for="'richtig' + i">Antwort 2</label></div>
+              <div><input type="radio" value="3" v-model="form.fragen[i-1].richtig" :id="'richtig' + i"/><label
+                :for="'richtig' + i">Antwort 3</label></div>
+              <div><input type="radio" value="4" v-model="form.fragen[i-1].richtig" :id="'richtig' + i"/><label
+                :for="'richtig' + i">Antwort 4</label></div>
             </div>
             <button type="button" @click="popFrage(i-1)">Letzte Frage löschen</button>
           </div>
@@ -87,7 +91,7 @@
               if (this.form.name.length > 3 && this.form.name.length < 25) {
                 if (this.form.fragen[i].richtig != 0) {
                   if (this.form.fragen.length >= 3) {
-                    this.richtigeBedingungen++ 
+                    this.richtigeBedingungen++
                   } else {
                     this.emptyErrorMessage = 'Dein Quiz braucht mindestens 3 Fragen'
                     this.emptyError = true
@@ -113,29 +117,22 @@
         if (this.richtigeBedingungen == this.form.fragen.length) {
           this.richtigeBedingungen = 0
           return axios.post("/api/quiz/", this.form)
-                  .then(response => {
-                      console.log(response.data);
-                      this.$router.push("/");
-                    })
-                    .catch(error => {
-                      this.error = true;
-                      this.errorMessage = error.response.data;
-                    });
+            .then(response => {
+              console.log(response.data);
+              this.$router.push("/");
+            })
+            .catch(error => {
+              this.error = true;
+              this.errorMessage = error.response.data;
+            });
         } else {
           this.richtigeBedingungen = 0
         }
       },
-      popFrage(index) {
+      popFrage() {
         if (this.form.fragen.length > 1) {
           this.sichtbarkeit.pop();
           this.form.fragen.pop();
-        //   this.form.fragen[index] = null
-        // for (let i = 0; i < this.form.fragen.length; i++) {
-        //   if (this.form.fragen[i] == null) {
-        //     this.form.fragen[i] = this.form.fragen[i+1]
-        //     this.form.fragen[i+1] = null
-        //   }
-        // }
         }
       }
     }
