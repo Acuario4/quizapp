@@ -4,10 +4,10 @@
     <parent>
         <groupId>org.quizapp</groupId>
         <artifactId>quizapp</artifactId>
-        <version>0.5-SNAPSHOT</version>
+        <version>0.6</version>
     </parent>
     <artifactId>quizapp-backend</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.6</version>
     <properties>
         <java.version>1.8</java.version>
         <frontend.files>src/main/resources/public/</frontend.files>
